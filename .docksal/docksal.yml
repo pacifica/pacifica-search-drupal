@@ -1,0 +1,46 @@
+version: "2.1"
+services:
+  web:
+    hostname: web
+    image: docksal/web:latest-apache2.4
+    volumes:
+      - project_root:/var/www:ro
+    labels:
+      - io.docksal.virtual-host=${VIRTUAL_HOST},*.${VIRTUAL_HOST}
+      - io.docksal.project-root=${PROJECT_ROOT}
+    environment:
+      - APACHE_DOCUMENTROOT=/var/www/${DOCROOT:-docroot}
+    depends_on:
+      - cli
+    dns:
+      - ${DOCKSAL_DNS1}
+      - ${DOCKSAL_DNS2}
+
+  db:
+    hostname: db
+    image: docksal/db:mysql-5.7
+    ports:
+      - "${MYSQL_PORT_MAPPING:-3306}"
+    volumes:
+      - project_root:/var/www:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+      - MYSQL_USER=${MYSQL_USER:-user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-user}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-default}
+    dns:
+      - ${DOCKSAL_DNS1}
+      - ${DOCKSAL_DNS2}
+
+  cli:
+    hostname: cli
+    image: docksal/cli:php7
+    volumes:
+      - project_root:/var/www/:rw
+      - host_home:/.home:ro
+      - docksal_ssh_agent:/.ssh-agent:ro
+    environment:
+      - XDEBUG_ENABLED=${XDEBUG_ENABLED:-0}
+    dns:
+      - ${DOCKSAL_DNS1}
+      - ${DOCKSAL_DNS2}
