@@ -1,0 +1,50 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - php
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+    config:
+      file_extensions: "php,module,inc,install,test,profile,theme,js,css,info,txt"
+      standard: "Drupal,DrupalPractice"
+ratings:
+  paths:
+  - "**.php"
+  - "**.module"
+  - "**.inc"
+  - "**.install"
+  - "**.test"
+  - "**.profile"
+  - "**.theme"
+  - "**.js"
+  - "**.css"
+  - "**.info"
+  - "**.txt"
+  - "**.md"
+
+exclude_paths:
+- vendor/
+- web/core/
+- web/libraries/
+- web/modules/contrib/
+- web/profiles/contrib/
+- web/themes/contrib/
+- drush/contrib/
+- drush/policy.drush.inc
+- scripts/composer/ScriptHandler.php
+- "**/autoload.php"
+- "**/example.*.php"
+- "**/default.*.php"
+- "**/settings*.php"
