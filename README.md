@@ -3,8 +3,26 @@
 [![Code Climate](https://codeclimate.com/github/pacifica/pacifica-search/badges/gpa.svg)](https://codeclimate.com/github/pacifica/pacifica-search)
 [![Issue Count](https://codeclimate.com/github/pacifica/pacifica-search/badges/issue_count.svg)](https://codeclimate.com/github/pacifica/pacifica-search)
 
-# Drupal 8 Pacifica Search Interface
 ## Installation
+### Docksal (local development)
+#### Requirements
+* [Docksal](https://docksal.io)
+
+Set local environment variables:
+
+```bash
+cp .docksal/example.docksal-local.env .docksal/docksal-local.env
+vi .docksal/docksal-local.env
+```
+
+Run installation script
+
+```bash
+fin init
+```
+
+Navigate to [pacifica.docksal](http://pacifica.docksal) in your browser
+
 ### Manual Installation
 #### Requirements
 * [Composer](https://getcomposer.org/download/)
