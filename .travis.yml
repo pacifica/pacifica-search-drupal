@@ -4,8 +4,11 @@ sudo: false
 
 php:
   - 5.6
-  - 7.0
   - 7.1
+
+cache:
+  directories:
+  - $HOME/.composer/cache/files
 
 env:
   global:
@@ -24,13 +27,13 @@ before_install:
 
 install:
   - composer --verbose install
+  - pip install pre-commit
 
 script:
-  - pip install pre-commit
   - pre-commit run -a
   - if [[ $RELEASE = dev ]]; then composer --verbose remove --no-update drupal/console; fi;
   - if [[ $RELEASE = dev ]]; then composer --verbose require --no-update drupal/core:8.4.x-dev drush/drush:9.0.x-dev; fi;
-  - if [[ $RELEASE = dev ]]; then composer --verbose update; fi;
+  - if [[ $RELEASE = dev ]]; then composer --verbose --prefer-dist update; fi;
   - cd $TRAVIS_BUILD_DIR/web
   - ./../vendor/bin/drush site-install --verbose --yes --db-url=sqlite://tmp/site.sqlite
   - ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
