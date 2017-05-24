@@ -10,7 +10,7 @@ else
   #   composer --verbose require --no-update drupal/core:8.4.x-dev drush/drush:9.0.x-dev
   #   composer --verbose --prefer-dist update;
   # fi
-  cd $TRAVIS_BUILD_DIR/web
+  cd $TRAVIS_BUILD_DIR/docroot
   ./../vendor/bin/drush site-install --verbose --yes --db-url=sqlite://tmp/site.sqlite
   ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
   until curl -s $SIMPLETEST_BASE_URL; do true; done > /dev/null
