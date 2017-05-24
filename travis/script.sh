@@ -3,11 +3,13 @@
 if [[ $LINTS == true ]] ; then
   pre-commit run -a
 else
-  if [[ $RELEASE == dev ]]; then
-    composer --verbose remove --no-update drupal/console
-    composer --verbose require --no-update drupal/core:8.4.x-dev drush/drush:9.0.x-dev
-    composer --verbose --prefer-dist update;
-  fi
+  # This is never being set right now but it's useful to describe how to
+  # test against a pre-released version of drupal
+  # if [[ $RELEASE == dev ]]; then
+  #   composer --verbose remove --no-update drupal/console
+  #   composer --verbose require --no-update drupal/core:8.4.x-dev drush/drush:9.0.x-dev
+  #   composer --verbose --prefer-dist update;
+  # fi
   cd $TRAVIS_BUILD_DIR/web
   ./../vendor/bin/drush site-install --verbose --yes --db-url=sqlite://tmp/site.sqlite
   ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
