@@ -19,9 +19,6 @@
   "description": "Project template for Drupal 8 projects with composer",
   "extra": {
     "installer-paths": {
-      "drush/contrib/{$name}": [
-        "type:drupal-drush"
-      ],
       "docroot/core": [
         "type:drupal-core"
       ],
@@ -36,6 +33,9 @@
       ],
       "docroot/themes/contrib/{$name}": [
         "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
       ]
     }
   },
