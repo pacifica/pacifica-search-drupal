@@ -18,6 +18,16 @@
   },
   "description": "Project template for Drupal 8 projects with composer",
   "extra": {
+    "drupal-scaffold": {
+      "excludes": [
+        ".gitattributes",
+        "sites/default/default.settings.php",
+        "sites/default/default.services.yml",
+        "sites/development.services.yml",
+        "sites/example.settings.local.php",
+        "sites/example.sites.php"
+      ]
+    },
     "installer-paths": {
       "docroot/core": [
         "type:drupal-core"
